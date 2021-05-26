@@ -6,18 +6,32 @@ body {
     color: aquamarine;
     background-color: blueviolet;
 }
+
 div {
     border: 1px solid black;
     margin-top: 5px;
     padding: 20px;
 }
+
 #left {
     float: left;
     padding: 0;
     border: none;
 }
+
 #right {
     float: right;
     padding: 0;
     border: none;
+}
+
+.box {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+
+.list_box {
+    width: 100%;
+    overflow: hidden;
 }
