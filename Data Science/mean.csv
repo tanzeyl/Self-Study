@@ -1,0 +1,13 @@
+Index,Student,Overall Marks,Gender,Subject,Age,Survived
+0,Tanzeel,98,Male,Physics,20,
+1,Khizra,97,,Chemistry,19,1
+2,Arshiya,96,Female,Maths,24,1
+3,Sania,88,Female,English,,
+4,Arshan,100,Male,PHE,10,1
+5,Atiya ,34,,Physics,,
+6,Safiya,67,Female,Chemistry,36,1
+7,Aqeel,43,Male,Physics,51,0
+8,Ramesh,21,,PHE,,0
+9,Suresh,52,Male,Chemistry,54,1
+10,Gautam,23,Male,Maths,12,0
+11,Sweety,9879,Female,Maths,898,0
