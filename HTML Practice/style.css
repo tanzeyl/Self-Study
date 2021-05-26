@@ -1,16 +1,10 @@
 body {
     max-width: 1000px;
     margin: auto;
-    font-family: cursive;
+    font-family:serif;
     font-size: 16px;
-    color: aquamarine;
-    background-color: blueviolet;
-}
-
-div {
-    border: 1px solid black;
-    margin-top: 5px;
-    padding: 20px;
+    color: yellow;
+    background-color: black;
 }
 
 #left {
@@ -34,4 +28,14 @@ div {
 .list_box {
     width: 100%;
     overflow: hidden;
+}
+
+#identity {
+    overflow: auto;
+    font-size: 10px;
+}
+
+.image1 {
+    float: left;
+    padding: 0px 20px 20px 20px;
 }
