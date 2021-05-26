@@ -52,3 +52,15 @@ body {
     padding: 30px 20px;
     margin-top: 50px;
 }
+
+.thumbnail {
+    display: inline-block;
+    height: auto;
+    padding: 4px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #a4a4a4;
+    text-align: center;
+    color: #666;
+    margin: 50px;
+}
