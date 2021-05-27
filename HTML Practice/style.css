@@ -171,19 +171,18 @@ input {
     }
 }
 
-
-            a:link {
-                color: red;
-            }
-            a:visited {
-                color:  green;
-            }
-            a:hover {
-                color: magenta;
-            }
-            a:active {
-                color: yellow;
-            }
-            li:nth-child(even){background-color: yellow;}
-            li:nth-child(odd){background-color: grey;}
-            li:hover {background-color: pink;}
+a:link {
+    color: red;
+}
+a:visited {
+    color:  green;
+}
+a:hover {
+    color: magenta;
+}
+a:active {
+    color: yellow;
+}
+li:nth-child(even){background-color: yellow;}
+li:nth-child(odd){background-color: grey;}
+li:hover {background-color: pink;}
