@@ -2,14 +2,35 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            a:link {
+                color: red;
+            }
+            a:visited {
+                color:  green;
+            }
+            a:hover {
+                color: magenta;
+            }
+            a:active {
+                color: yellow;
+            }
+            li:nth-child(even){background-color: yellow;}
+            li:nth-child(odd){background-color: grey;}
+            li:hover {background-color: pink;}
+        </style>
     </head>
     <body>
-        <div>
-            <center>
-                <h4>Subscribe to our Newsletter.</h4>
-                <input type="text" >
-                <input type="submit" value="Subscribe" id="subscribe">
-            </center>
-        </div>
+        <p>Batman is awesome. Click <a href="https://wikipedia.ord/wiki/Batman" target="_blank">here</a> to know more.</p>
+        <h2>Partnerships</h2>
+        <ol>
+            <li>Robin</li>
+            <li>Batgirl</li>
+            <li>James Gordon</li>
+            <li>Green Arrow</li>
+            <li>Catwoman</li>
+            <li>Superman</li>
+            <li>Wonder Woman</li>
+        </ol>
     </body>
 </html>
