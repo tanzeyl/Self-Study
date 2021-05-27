@@ -40,7 +40,7 @@ body {
 }
 
 #background_image {
-    background-image: url(img/download.jpg);
+    background-image: url(img/background.jpg);
     height: 350px;
     padding-top: 50px;
     color: #fff;
@@ -83,7 +83,7 @@ th {
     background-color: #ececec;
 }
 
-navclass {
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -95,4 +95,14 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     float: right;
+}
+
+.logo {
+    float: left;
+    height: 50px;
+}
+
+#header {
+    padding: 5px 0px;
+    border-bottom: 1px solid black;
 }
