@@ -4,6 +4,7 @@ body {
     font-family:serif;
     font-size: 16px;
     color: black;
+    background-color: white;
 }
 
 #left {
@@ -80,4 +81,18 @@ th, td {
 th {
     text-align: left;
     background-color: #ececec;
+}
+
+navclass {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li a {
+    display: block;
+    color: #666;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: right;
 }
