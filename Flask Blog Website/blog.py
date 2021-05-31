@@ -1,8 +1,13 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "1e6efb89d38a82dc4ca9f434ad9b1e06"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+
+db = SQLAlchemy(app)
 
 posts = [{"author":"Tanzeel Khan",
 		"title": "Blog Post 1",
@@ -26,9 +31,12 @@ def about():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	form = RegistrationForm()
+	if form.validate_on_submit():
+		flash(f'Account created for {form.username.data}!', 'success')
+		return redirect(url_for('home'))
 	return render_template("register.html", title="Register", form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
 	form = LoginForm()
 	return render_template("login.html", title="Log In", form=form)
