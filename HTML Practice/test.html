@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <style>
-        </style>
+        <script type="text/javascript">
+        function blockSpecialChar(e){
+        var k;
+        document.all ? k = e.keyCode : k = e.which;
+        return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
+        }
+    </script>
     </head>
     <body>
-        <p>Batman is awesome. Click <a href="https://wikipedia.ord/wiki/Batman" target="_blank">here</a> to know more.</p>
-        <h2>Partnerships</h2>
-        <ol>
-            <li>Robin</li>
-            <li>Batgirl</li>
-            <li>James Gordon</li>
-            <li>Green Arrow</li>
-            <li>Catwoman</li>
-            <li>Superman</li>
-            <li>Wonder Woman</li>
-        </ol>
+        <form>
+            <fieldset>
+                <legend>Enter your details</legend>
+                <table>
+                    <tr><td>Email: </td><td><input type="text" name="email" placeholder="Enter your email"></td></tr>
+                    <tr><td>Mobile Number: </td><td><input type="number" name="number" placeholder="Enter your Mobile Number"></td></tr>
+                    <tr><td>Password: </td><td><input type="password" name="password" onkeypress="return blockSpecialChar(event)" placeholder="Enter your password"></td></tr>
+                    <tr><td>Do you use Instagram? </td><td><input type="radio" name="insta" value="yes">Yes<input type="radio" name="insta" value="No">No</td>
+                </table>
+                <input type="checkbox" id="icecream1" name="icecream1" value="vanilla">
+                <label for="vehicle1"> I like Vinalla Ice-Cream</label><br>
+                <input type="checkbox" id="icecream2" name="icecream2" value="Chocolate">
+                <label for="vehicle1"> I like Chocolate Ice-Cream</label><br>
+                <input type="checkbox" id="icecream3" name="icecream3" value="strawberry">
+                <label for="vehicle1"> I like Strawberry Ice-Cream</label><br>
+                <input type="submit" name="sub_button">
+            </fieldset>
+        </form>
     </body>
 </html>
