@@ -2,7 +2,7 @@
 Name: Tanzeel Khan
 Section: A
 Roll Number: 61
-Question: To find the length of a string.
+Question: To copy one string to another.
 */
 #include <stdio.h>
 #define MAX 100
@@ -25,4 +25,3 @@ void strcopy(char *str1, char *str2)
     }
     *str2 = '\0';
 }
-
