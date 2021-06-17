@@ -1,54 +1,40 @@
 #include <stdio.h>
-int main()
+#include <string.h>
+ 
+char str[100], sub[100];
+int count = 0, count1 = 0;
+ 
+void main()
 {
- int arr[10][10];
-  int i, j, m, n;
-   printf("Enter number of Rows :");
-    scanf("%d",&m);
-     printf("Enter number of Cols :");
-      scanf("%d",&n);
-       printf("\nEnter matrix elements :\n");
-        for (i = 0; i < m; ++i)
+    int i, j, l, l1, l2;
+ 
+    printf("\nEnter a string : ");
+    scanf("%[^\n]s", str);
+ 
+    l1 = strlen(str);
+ 
+    printf("\nEnter a substring : ");
+    scanf(" %[^\n]s", sub);
+ 
+    l2 = strlen(sub);
+ 
+    for (i = 0; i < l1;)
+    {
+        j = 0;
+        count = 0;
+        while ((str[i] == sub[j]))
         {
-         for (j = 0; j < n; ++j)
-          {
-           printf("Enter element [%d,%d] : ",i+1,j+1);
-            scanf("%d", &arr[i][j]);
-             }
-              }
-               for (int i = 0; i < m; i++)
-                {
-                 for (int j = 0; j < n; j++)
-                  {
-                   int minimum = arr[i][j];
-                    int z = i;
-                     int q = j;
-                      int w = j;
-                       for (int k = i; k < m; k++)
-                        {
-                         for (; w < n; w++)
-                          {
-                           if (arr[k][w] < minimum)
-                            {
-                             minimum = arr[k][w];
-                              z = k;
-                               q = w;
-                                }
-                                 }
-                                  w = 0;
-                                   }
-                                    int temp = arr[i][j];
-                                     arr[i][j] = arr[z][q];
-                                      arr[z][q] = temp;
-                                       }
-                                        }
-                                         for (int i = 0; i < m; i++)
-                                          {
-                                           for (int j = 0; j < n; j++)
-                                            {
-                                             printf("%d ", arr[i][j]);
-                                              }
-                                               printf("\n");
-                                                }
-                                                 return 0;
+            count++;
+            i++;
+            j++;
+        }
+        if (count == l2)
+        {
+            count1++;                                   
+            count = 0;
+        }
+        else
+            i++;
+    }    
+    printf("%s occurs %d times in %s", sub, count1+1, str);
 }
