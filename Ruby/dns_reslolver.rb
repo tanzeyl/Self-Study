@@ -16,6 +16,7 @@ def parse_dns(dns_raw)
       new_list[j] = new_list[j].strip
     end
   end
+  new_list
 end
 
 def resolve(dns_records, lookup_chain, domain)
