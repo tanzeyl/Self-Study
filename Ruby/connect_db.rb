@@ -4,8 +4,8 @@ def connect_db!
   ActiveRecord::Base.establish_connection(
     host: 'localhost',
     adapter: 'postgresql',
-    database: 'saas_db',
+    database: 'cafe',
     user: 'postgres',
-    password: '#Because008'
+    password: 'password'
   )
 end
