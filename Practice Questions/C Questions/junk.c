@@ -1,40 +1,52 @@
 #include <stdio.h>
-#include <string.h>
 
-char str[100], sub[100];
-int count = 0, count1 = 0;
+int main(void) {
+  // creating a FILE variable
+  FILE *fptr;
 
-void main()
-{
-    int i, j, l, l1, l2;
+  // integer variable
+  int num;
 
-    printf("\nEnter a string : ");
-    scanf("%[^\n]s", str);
+  // open the file in write mode
+  fptr = fopen("integers.txt", "w");
 
-    l1 = strlen(str);
+  if (fptr != NULL) {
+    printf("File created successfully!\n");
+  }
+  else {
+    printf("Failed to create the file.\n");
+    // exit status for OS that an error occurred
+    return -1;
+  }
 
-    printf("\nEnter a substring : ");
-    scanf(" %[^\n]s", sub);
-
-    l2 = strlen(sub);
-
-    for (i = 0; i < l1;)
-    {
-        j = 0;
-        count = 0;
-        while ((str[i] == sub[j]))
-        {
-            count++;
-            i++;
-            j++;
-        }
-        if (count == l2)
-        {
-            count1++;
-            count = 0;
-        }
-        else
-            i++;
+  // enter integer numbers
+  printf("Enter some integer numbers [Enter -1 to exit]: ");
+  while (1) {
+    scanf("%d", &num);
+    if (num != -1) {
+      putw(num, fptr);
     }
-    printf("%s occurs %d times in %s", sub, count1+1, str);
+    else {
+      break;
+    }
+  }
+
+  // close connection
+  fclose(fptr);
+
+  // open file for reading
+  fptr = fopen("integers.txt", "r");
+
+  // display numbers
+  printf("\nNumbers:\n");
+  while ( (num = getw(fptr)) != EOF ) {
+    printf("%d\n", num);
+  }
+
+  printf("\nEnd of file.\n");
+
+  // close connection
+  fclose(fptr);
+
+  return 0;
 }

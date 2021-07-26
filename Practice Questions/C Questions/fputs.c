@@ -5,14 +5,14 @@ int main()
 {
   FILE *fptr;
   char buffer[80];
-  fptr = fopen("sample2.txt", "w");
+  fptr = fopen("sample", "w");
 
   if (fptr = NULL)
   {
     printf("Error in opening file.\n");
     exit(1);
   }
-
+  printf("Enter your string.\n");
   do
   {
     fgets(buffer, 80, stdin);
@@ -20,4 +20,5 @@ int main()
   } while (*buffer != '\n');
 
   fclose(fptr);
+  return 0;
 }
