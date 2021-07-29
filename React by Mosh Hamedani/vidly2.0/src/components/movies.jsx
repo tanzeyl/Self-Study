@@ -46,8 +46,7 @@ class Movies extends Component {
     this.setState({ sortColumn });
   };
 
-  render() {
-    const { length: count } = this.state.movies;
+  getPagedData = () => {
     const {
       pageSize,
       currentPage,
@@ -55,44 +54,48 @@ class Movies extends Component {
       movies: allMovies,
       sortColumn,
     } = this.state;
-
-    if (count === 0) return <h1>There are no movies in this database.</h1>;
-
     const filtered =
       selectedGenre && selectedGenre._id
         ? allMovies.filter((m) => m.genre._id === this.state.selectedGenre._id)
         : allMovies;
-
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
-
     const movies = paginate(sorted, currentPage, pageSize);
+    return { totalCount: filtered.length, data: movies };
+  };
 
+  render() {
+    const { length: count } = this.state.movies;
+    const { pageSize, currentPage, sortColumn } = this.state;
+    const { totalCount, data: movies } = this.getPagedData();
+    if (count === 0) return <h1>There are no movies in this database.</h1>;
     return (
-      <div className="row m-4">
-        <div className="col-3">
-          <ListGroup
-            items={this.state.genres}
-            selectedItem={this.state.selectedGenre}
-            onItemSelect={this.handleGenreSelect}
-          />
+      <React.Fragment>
+        <div className="row m-4">
+          <div className="col-3">
+            <ListGroup
+              items={this.state.genres}
+              selectedItem={this.state.selectedGenre}
+              onItemSelect={this.handleGenreSelect}
+            />
+          </div>
+          <div className="col">
+            <h1>There are {totalCount} movies in this database.</h1>
+            <MoviesTable
+              movies={movies}
+              onLike={this.handleLike}
+              sortColumn={sortColumn}
+              onDelete={this.handleDelete}
+              onSort={this.handleSort}
+            />
+            <Pagination
+              itemsCount={totalCount}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
         </div>
-        <div className="col">
-          <h1>There are {filtered.length} movies in this database.</h1>
-          <MoviesTable
-            movies={movies}
-            onLike={this.handleLike}
-            sortColumn={sortColumn }
-            onDelete={this.handleDelete}
-            onSort={this.handleSort}
-          />
-          <Pagination
-            itemsCount={filtered.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
