@@ -38,12 +38,12 @@ class Navbar extends Component {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/Login">
+                <NavLink className="nav-link" to="/login">
                   Login
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/Register">
+                <NavLink className="nav-link" to="/register">
                   Register
                 </NavLink>
               </li>

@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import Joi from "joi-browser"
-import Input from "./input"
+import React, { Component } from "react";
+import Joi from "joi-browser";
+import Input from "./input";
 
 class Form extends Component {
   state = {
     data: {},
-    error: {}
-  }
+    error: {},
+  };
 
   validate = () => {
     const { error } = Joi.validate(this.state.data, this.schema, {
@@ -31,7 +31,7 @@ class Form extends Component {
     const errors = this.validate();
     this.setState({ errors: errors || {} });
     if (errors) return;
-    this.doSubmit()
+    this.doSubmit();
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -45,20 +45,38 @@ class Form extends Component {
   };
 
   renderButton(label) {
-    return <button disabled={this.validate()} className="btn btn-primary m-2">
-      {label}
-    </button>
+    return (
+      <button disabled={this.validate()} className="btn btn-primary m-2">
+        {label}
+      </button>
+    );
+  }
+
+  renderSelect(name, label, options) {
+    const { data, errors } = this.state;
+    return (
+      <Select
+        name={name}
+        value={data[name]}
+        label={label}
+        options={options}
+        onChange={this.handleChange}
+        error={errors[name]}
+      />
+    );
   }
 
   renderInput(name, label, type = "text") {
-    return <Input
-            type={type}
-            name={name}
-            value={this.state.data[name]}
-            onChange={this.handleChange}
-            label={label}
-            error={this.state.errors[name]}
-          />
+    return (
+      <Input
+        type={type}
+        name={name}
+        value={this.state.data[name]}
+        onChange={this.handleChange}
+        label={label}
+        error={this.state.errors[name]}
+      />
+    );
   }
 }
 
