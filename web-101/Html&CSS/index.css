@@ -1,0 +1,21 @@
+.container {
+  background-image: url("background.jpg");
+  background-size: cover;
+}
+
+.content {
+  background-image: url("content-background.jpg");
+  background-blend-mode: color;
+  background-size: cover;
+  margin: auto;
+  width: 600px;
+  height: 800px;
+}
+
+.inner-content {
+  text-align: center;
+}
+
+h1 {
+  text-decoration: underline;
+}
