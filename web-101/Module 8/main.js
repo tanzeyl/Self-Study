@@ -1,1 +1,21 @@
-console.log("Hello from JS");
+let c = document.getElementById("myCanvas");
+let ctx = c.getContext("2d");
+
+ctx.beginPath();
+ctx.arc(100, 100, 5, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.moveTo(100, 105);
+ctx.lineTo(100, 120);
+ctx.stroke();
+ctx.moveTo(100, 120);
+ctx.lineTo(110, 140);
+ctx.stroke();
+ctx.moveTo(100, 120);
+ctx.lineTo(90, 140);
+ctx.stroke();
+ctx.moveTo(100, 110);
+ctx.lineTo(110, 115);
+ctx.stroke();
+ctx.moveTo(100, 110);
+ctx.lineTo(90, 115);
+ctx.stroke();
