@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="main.js"></script>
+    <script src="todaysEntries.js"></script>
+  </head>
+  <body>
+    <h2>Progrmming Languages</h2>
+    <ul id="languages"></ul>
+    <script>
+      let languages = ["Python", "C", "C++", "Ruby", "Swift", "Javascript"];
+      let result = [];
+      let createListItem = (value) => {
+        let element = "<li>" + value + "</li>";
+        result.push(element);
+      };
+      languages.forEach(createListItem);
+      document.getElementById("languages").innerHTML = result.join("\n");
+    </script>
+  </body>
+</html>
