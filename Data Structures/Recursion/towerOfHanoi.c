@@ -4,7 +4,7 @@ void TOH(int, int, int, int);
 
 int main()
 {
-  TOH(16,1,2,3);
+  TOH(4,1,2,3);
 }
 
 void TOH(int n, int a, int b, int c)
