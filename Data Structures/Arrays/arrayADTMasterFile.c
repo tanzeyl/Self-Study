@@ -12,6 +12,14 @@ void Insert(array *, int, int);
 void Delete(array *, int);
 int Search(array, int);
 void Swap(int *, int *);
+void Get(array, int);
+void Set(array *, int, int);
+void Max(array);
+void Min(array);
+void Sum(array);
+void Reverse(array *);
+void LeftShift(array *, int);
+void RightShift(array *, int);
 
 int main()
 {
@@ -30,7 +38,8 @@ int main()
 
   while(1)
   {
-    printf("Enter the operation you want to do.\n1. Display\n2.Append\n3.Insert\n4. Delete(from index)\n5. Search\n");
+    printf("Enter the operation you want to do.\n1. Display\n2.Append\n3.Insert\n4. Delete(from index)\n5. Search\n6. Get\n7. Set\n8. Max\n9. Min\n10. Sum\n11. Reverse\n");
+    printf("12. Left Shift\n13. Right Shift\n");
     scanf("%d",&ch);
     switch(ch)
     {
@@ -55,6 +64,26 @@ int main()
               else
                 printf("The element is not present.\n");
               break;
+      case 6: printf("Enter the index you want to check.\n");
+              scanf("%d",&i);
+              Get(arr, i);
+              break;
+      case 7: printf("Enter the index and element you want to set.\n");
+              scanf("%d%d",&i,&x);
+              Set(&arr, i, x);
+              break;
+      case 8: Max(arr); break;
+      case 9: Min(arr); break;
+      case 10: Sum(arr); break;
+      case 11: Reverse(&arr); break;
+      case 12: printf("Enter the number of times you want to left shift.\n");
+              scanf("%d",&x);
+              LeftShift(&arr, x);
+              break;
+      case 13: printf("Enter the number of times you want to right shift.\n");
+               scanf("%d",&x);
+               RightShift(&arr, x);
+               break;
       default: printf("Enter a valid choice.\n");
     }
     printf("\nEnter 1 to continue and anything else to exit.\n");
@@ -127,4 +156,87 @@ void Swap(int *x, int *y)
   temp = *x;
   *x = *y;
   *y = temp;
+}
+
+void Get(array arr, int i)
+{
+  if (i >= 0 && i < arr.length)
+    printf("The element at index %d is %d.\n",i, arr.A[i]);
+  else
+    printf("Invalid index.\n");
+}
+
+void Set(array *arr, int i, int x)
+{
+  if(i >= 0 && i <= arr->length)
+    arr->A[i] = x;
+  else
+    printf("Invalid index.\n");
+}
+
+void Max(array arr)
+{
+  int large = arr.A[0], i;
+  for(i=1; i<arr.length; i++)
+  {
+    if (arr.A[i] > large)
+      large = arr.A[i];
+  }
+  printf("Largest element is: %d.\n", large);
+}
+
+void Min(array arr)
+{
+  int small = arr.A[0], i;
+  for(i=1; i<arr.length; i++)
+  {
+    if (arr.A[i] < small)
+      small = arr.A[i];
+  }
+  printf("Smallest element is: %d.\n", small);
+}
+
+void Sum(array arr)
+{
+  int sum = 0, i;
+  for(i=0; i< arr.length; i++)
+    sum = sum + arr.A[i];
+  printf("Sum is: %d.\n", sum);
+}
+
+void Reverse(array *arr)
+{
+  int i, t;
+  for(i=0; i<arr->length/2; i++)
+  {
+    t = arr->A[i];
+    arr->A[i] = arr->A[arr->length-i-1];
+    arr->A[arr->length-i-1] = t;
+  }
+}
+
+void LeftShift(array *arr, int x)
+{
+  int ctr = 0, t, i;
+  while(ctr < x)
+  {
+    t = arr->A[0];
+    for(i=1; i<arr->length; i++)
+      arr->A[i-1] = arr->A[i];
+    arr->A[arr->length-1] = t;
+    ctr++;
+  }
+}
+
+void RightShift(array *arr, int x)
+{
+  int ctr = 0, i, t;
+  while(ctr < x)
+  {
+    t = arr->A[arr->length-1];
+    for(i=arr->length-1; i>0; i--)
+      arr->A[i] = arr->A[i-1];
+    arr->A[0] = t;
+    ctr++;
+  }
 }
