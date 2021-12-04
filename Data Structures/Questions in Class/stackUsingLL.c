@@ -79,7 +79,7 @@ void display(nodetype *top)
   {
     while(top != NULL)
     {
-      printf("%d ",top->info);
+      printf("%d \n1",top->info);
       top = top->next;
     }
   }
