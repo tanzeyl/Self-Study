@@ -3,7 +3,7 @@
 
 typedef struct Array
 {
-  int *A, size, length;
+  int A[10], size, length;
 } array;
 
 void Display(array);
@@ -20,11 +20,17 @@ void Sum(array);
 void Reverse(array *);
 void LeftShift(array *, int);
 void RightShift(array *, int);
+void InsertSort(array *, int);
+int isSorted(array);
+void Rearrange(array *);
+array * Merge(array *, array *);
 
 int main()
 {
   int n, i, x, ch;
   array arr;
+  array arr2 = {{2, 4, 6, 8, 10}, 10, 5};
+  array *p = NULL;
 
   printf("Enter the size of the array.\n");
   scanf("%d",&arr.size);
@@ -39,7 +45,7 @@ int main()
   while(1)
   {
     printf("Enter the operation you want to do.\n1. Display\n2.Append\n3.Insert\n4. Delete(from index)\n5. Search\n6. Get\n7. Set\n8. Max\n9. Min\n10. Sum\n11. Reverse\n");
-    printf("12. Left Shift\n13. Right Shift\n");
+    printf("12. Left Shift\n13. Right Shift\n14. Insert Sort\n15. Check Sorted\n16. Rearrange\n17. Merge\n");
     scanf("%d",&ch);
     switch(ch)
     {
@@ -83,6 +89,19 @@ int main()
       case 13: printf("Enter the number of times you want to right shift.\n");
                scanf("%d",&x);
                RightShift(&arr, x);
+               break;
+      case 14: printf("Enter the element you want to insert.\n");
+               scanf("%d",&x);
+               InsertSort(&arr, x);
+               break;
+      case 15: isSorted(arr); break;
+      case 16: Rearrange(&arr); break;
+      case 17: p = Merge(&arr, &arr2);
+               printf("Size of the merged array is: %d.\n",p->size);
+               printf("Length of the merged array is: %d.\n",p->length);
+               printf("Elements of the array are:\n");
+               for(i=0; i < p->length; i++)
+                printf("%d ",p->A[i]);
                break;
       default: printf("Enter a valid choice.\n");
     }
@@ -239,4 +258,65 @@ void RightShift(array *arr, int x)
     arr->A[0] = t;
     ctr++;
   }
+}
+
+void InsertSort(array *arr, int x)
+{
+  int i = arr->length-1;
+  if (arr->length == arr->size)
+  {
+    printf("Not enough space.\n");
+    return;
+  }
+  while(i >= 0 && arr->A[i] > x)
+  {
+    arr->A[i+1] = arr->A[i];
+    i--;
+  }
+  arr->A[i+1] = x;
+  arr->length++;
+}
+
+int isSorted(array arr)
+{
+  int i;
+  for(i=0; i< arr.length-1; i++)
+  {
+    if (arr.A[i] > arr.A[i+1])
+      return 0;
+  }
+  return 1;
+}
+
+void Rearrange(array *arr)
+{
+  int i = 0, j = arr->length-1;
+  while(i<j)
+  {
+    while(arr->A[i] < 0) i++;
+    while(arr->A[j] >= 0) j--;
+    if (i < j)
+      Swap(&arr->A[i], &arr->A[j]);
+  }
+}
+
+array * Merge(array *arr1, array *arr2)
+{
+  int i, j, k;
+  i = j = k = 0;
+  array *arr3 = (array *)malloc(sizeof(array));
+  while(i < arr1->length && j < arr2->length)
+  {
+    if(arr1->A[i] < arr2->A[j])
+      arr3->A[k++] = arr1->A[i++];
+    else
+      arr3->A[k++] = arr2->A[j++];
+  }
+  for(; i < arr1->length; i++)
+    arr3->A[k++] = arr1->A[i];
+  for(; j< arr2->length; j++)
+    arr3->A[k++] = arr2->A[j];
+  arr3->length = arr1->length + arr2->length;
+  arr3->size = arr1->size + arr2->size;
+  return arr3;
 }
