@@ -24,28 +24,21 @@ void InsertSort(array *, int);
 int isSorted(array);
 void Rearrange(array *);
 array * Merge(array *, array *);
+array * Union(array *, array *);
+array * Intersection(array *, array *);
+array * Difference(array *, array *);
 
 int main()
 {
   int n, i, x, ch;
-  array arr;
-  array arr2 = {{2, 4, 6, 8, 10}, 10, 5};
-  array *p = NULL;
-
-  printf("Enter the size of the array.\n");
-  scanf("%d",&arr.size);
-  arr.A = (int *)malloc(arr.size * sizeof(int));
-  printf("Enter the number of elements.\n");
-  scanf("%d",&n);
-  printf("Enter the elements.\n");
-  for(i=0; i<n; i++)
-    scanf("%d",&arr.A[i]);
-  arr.length = n;
+  array arr = {{2, 4, 6, 8, 10}, 10, 5};
+  array arr2 = {{3, 4, 5, 7, 10}, 10, 5};
+  array *arr3;
 
   while(1)
   {
     printf("Enter the operation you want to do.\n1. Display\n2.Append\n3.Insert\n4. Delete(from index)\n5. Search\n6. Get\n7. Set\n8. Max\n9. Min\n10. Sum\n11. Reverse\n");
-    printf("12. Left Shift\n13. Right Shift\n14. Insert Sort\n15. Check Sorted\n16. Rearrange\n17. Merge\n");
+    printf("12. Left Shift\n13. Right Shift\n14. Insert Sort\n15. Check Sorted\n16. Rearrange\n17. Merge\n18. Union\n19. Intersection\n20. Difference\n");
     scanf("%d",&ch);
     switch(ch)
     {
@@ -96,12 +89,21 @@ int main()
                break;
       case 15: isSorted(arr); break;
       case 16: Rearrange(&arr); break;
-      case 17: p = Merge(&arr, &arr2);
-               printf("Size of the merged array is: %d.\n",p->size);
-               printf("Length of the merged array is: %d.\n",p->length);
-               printf("Elements of the array are:\n");
-               for(i=0; i < p->length; i++)
-                printf("%d ",p->A[i]);
+      case 17: arr3 = Merge(&arr, &arr2);
+               for(i=0; i<arr3->length; i++)
+                printf("%d ", arr3->A[i]);
+               break;
+      case 18: arr3 = Union(&arr, &arr2);
+               for(i=0; i<arr3->length; i++)
+                printf("%d ", arr3->A[i]);
+               break;
+      case 19: arr3 = Intersection(&arr, &arr2);
+               for(i=0; i<arr3->length; i++)
+                printf("%d ", arr3->A[i]);
+               break;
+      case 20: arr3 = Difference(&arr, &arr2);
+               for(i=0; i<arr3->length; i++)
+                printf("%d ", arr3->A[i]);
                break;
       default: printf("Enter a valid choice.\n");
     }
@@ -317,6 +319,78 @@ array * Merge(array *arr1, array *arr2)
   for(; j< arr2->length; j++)
     arr3->A[k++] = arr2->A[j];
   arr3->length = arr1->length + arr2->length;
+  arr3->size = arr1->size + arr2->size;
+  return arr3;
+}
+
+array * Union(array *arr1, array *arr2)
+{
+  int i, j, k;
+  i = j = k = 0;
+  array *arr3 = (array *)malloc(sizeof(array));
+  while(i < arr1->length && j < arr2->length)
+  {
+    if(arr1->A[i] < arr2->A[j])
+      arr3->A[k++] = arr1->A[i++];
+    else if (arr2->A[j] < arr1->A[i])
+      arr3->A[k++] = arr2->A[j++];
+    else
+    {
+      arr3->A[k++] = arr1->A[i++];
+      j++;
+    }
+  }
+  for(; i < arr1->length; i++)
+    arr3->A[k++] = arr1->A[i];
+  for(; j< arr2->length; j++)
+    arr3->A[k++] = arr2->A[j];
+  arr3->length = k;
+  arr3->size = arr1->size + arr2->size;
+  return arr3;
+}
+
+array * Intersection(array *arr1, array *arr2)
+{
+  int i, j, k;
+  i = j = k = 0;
+  array *arr3 = (array *)malloc(sizeof(array));
+  while(i < arr1->length && j < arr2->length)
+  {
+    if(arr1->A[i] < arr2->A[j])
+      i++;
+    else if (arr2->A[j] < arr1->A[i])
+      j++;
+    else
+    {
+      arr3->A[k++] = arr1->A[i++];
+      j++;
+    }
+  }
+  arr3->length = k;
+  arr3->size = arr1->size + arr2->size;
+  return arr3;
+}
+
+array * Difference(array *arr1, array *arr2)
+{
+  int i, j, k;
+  i = j = k = 0;
+  array *arr3 = (array *)malloc(sizeof(array));
+  while(i < arr1->length && j < arr2->length)
+  {
+    if(arr1->A[i] < arr2->A[j])
+      arr3->A[k++] = arr1->A[i++];
+    else if (arr2->A[j] < arr1->A[i])
+      j++;
+    else
+    {
+      i++;
+      j++;
+    }
+  }
+  for(; i < arr1->length; i++)
+    arr3->A[k++] = arr1->A[i];
+  arr3->length = k;
   arr3->size = arr1->size + arr2->size;
   return arr3;
 }
