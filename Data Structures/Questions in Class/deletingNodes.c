@@ -63,6 +63,7 @@ void delete(tree **root, int key)
 {
   tree *prev = NULL, *p = NULL, *q = NULL;
   q = *root;
+  prev = q;
   while(q->info != key && (q->left != NULL || q->right != NULL))
   {
     prev = q;
@@ -98,11 +99,13 @@ void delete(tree **root, int key)
         prev->right= q->left;
     }
   }
-  // else
-  // {
-  //   p = inOrderSuccessor(q, q);
-  //   (*root)->info = p->info;
-  // }
+  else
+  {
+    p = inOrderSuccessor(q, q);
+    q->info = p->info;
+    free(p);
+
+  }
 }
 
 tree * minValue(tree *node)
