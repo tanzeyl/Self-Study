@@ -11,21 +11,23 @@ class Time
     Time(int a, int b, int c)
     { h = a; m = b; s = c; }
 
-    void add(Time x)
+    Time add(Time x)
     {
-      s = s + x.s;
-      if (s > 59)
+      Time c;
+      c.s = s + x.s;
+      if (c.s > 59)
       {
-        s = s - 60;
+        c.s = c.s - 60;
         m++;
       }
-      m = m + x.m;
-      if (m > 59)
+      c.m = m + x.m;
+      if (c.m > 59)
       {
-        m = m - 60;
+        c.m = c.m - 60;
         h++;
       }
-      h = h + x.h;
+      c.h = h + x.h;
+      return c;
     }
 
     void show()
@@ -36,7 +38,7 @@ class Time
 
 int main()
 {
-  Time a(10, 40, 50), b(20, 50, 12);
-  a.add(b);
-  a.show();
+  Time a(10, 40, 50), b(20, 50, 12), c;
+  c = a.add(b);
+  c.show();
 }

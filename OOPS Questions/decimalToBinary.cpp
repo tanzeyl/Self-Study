@@ -27,6 +27,6 @@ class Decimal
 
 int main()
 {
-  Decimal obj(7);
+  Decimal obj(256);
   return 0;
 }
