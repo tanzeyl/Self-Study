@@ -25,9 +25,9 @@ void printBill(string name, int units)
   int cost;
   if (units <= 100)
     cost = units * 0.6;
-  if (units > 100 && units <= 300)
-    cost = 60 + units * 0.8;
-  if (units > 300)
+  else if (units > 100 && units <= 300)
+    cost = 60 + (units-100) * 0.8;
+  else
     cost = units * 0.9;
   if (cost > 300)
     cost += 50;

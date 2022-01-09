@@ -12,7 +12,7 @@ class Shape
     }
 
     virtual void displayArea()
-    { cout << "This is a virtual function." << endl; }
+    {}
 };
 
 class Triangle: public Shape

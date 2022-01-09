@@ -3,8 +3,7 @@ using namespace std;
 
 class CalcArea
 {
-  protected: float
-   r, h;
+  protected: float r, h;
   public:
     virtual void getData() = 0;
     virtual void volume() = 0;
