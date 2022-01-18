@@ -12,7 +12,7 @@ Node * pop(Node *);
 
 int main()
 {
-  int i;
+  int i, flag = 0;
   Node *top = NULL;
   char a[100];
   printf("Enter the expression.\n");
@@ -22,10 +22,21 @@ int main()
     if (a[i] == '(')
       top = push(top, '(');
     else if (a[i] == ')')
-      top = pop(top);
+    {
+      if (top == NULL)
+      {
+        printf("There is an closing brace without an opening brace.\n");
+        flag = 1;
+        break;
+      }
+      else
+        top = pop(top);
+    }
   }
-  if (top == NULL)
-    printf("The paranthesis are balanced.\n");
+  if (top == NULL && flag)
+    printf("The paranthesis are not balanced.\n");
+  else if (top == NULL && !flag)
+    printf("The parantrhesis are balanced.\n");
   else
     printf("The paranthesis are unbalanced.\n");
 }
