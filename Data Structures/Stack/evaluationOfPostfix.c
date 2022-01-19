@@ -4,24 +4,28 @@
 
 typedef struct node
 {
-  char info;
+  int info;
   struct node *next;
 } Node;
 
 Node * push(Node *, char);
-char pop(Node **);
+int pop(Node **);
 char * convert(char *);
 int isOperand(char);
 int precedence(char);
+int evaluate(char *);
 
 int main()
 {
   char *a = NULL, *b = NULL;
+  int c;
   a = (char *)malloc(100 * sizeof(char));
   printf("Enter the expression.\n");
   scanf("%s",a);
   b = convert(a);
-  printf("The postfix form is:\n%s",b);
+  printf("The postfix form is:\n%s\n",b);
+  c = evaluate(b);
+  printf("The evaluated value is: %d.\n",c);
 }
 
 Node * push(Node *top, char c)
@@ -37,9 +41,9 @@ Node * push(Node *top, char c)
   return top;
 }
 
-char pop(Node **top)
+int pop(Node **top)
 {
-  char a;
+  int a;
   Node *p = NULL;
   p = *top;
   *top = (*top)->next;
@@ -91,4 +95,28 @@ int precedence(char a)
     return 2;
   else
     return 0;
+}
+
+int evaluate(char postfix[])
+{
+  int i = 0, x1, x2, r;
+  Node *top = NULL;
+  while(postfix[i] != '\0')
+  {
+    if (isOperand(postfix[i]))
+      top = push(top, postfix[i++]-'0');
+    else
+    {
+      x1 = (int)pop(&top);
+      x2 = (int)pop(&top);
+      switch(postfix[i++])
+      {
+        case '+': r = x1+x2; top = push(top, r); break;
+        case '-': r = x2-x1; top = push(top, r); break;
+        case '*': r = x1*x2; top = push(top, r); break;
+        case '/': r = x1/x2; top = push(top, r); break;
+      }
+    }
+  }
+  return pop(&top);
 }
