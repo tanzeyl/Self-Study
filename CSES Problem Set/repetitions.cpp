@@ -1,37 +1,25 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
 
-long long long int calcLength(string);
-void findLongestRep(string);
-
-int main()
-{
-  string s;
-  cin >> s;
-  findLongestRep(s);
-}
-
-void findLongestRep(string s)
-{
-  long long long int i, l=0, maxLength = 0, maxIndex;
-  for (i=0; i<s.size();)
+ int main()
+ {
+  string str;
+  cin >> str;
+  long long int i, count = 1, max_count = 1;
+  for(i=1; i<str.size(); i++)
   {
-    l = calcLength(&s[i]);
-    if (l > maxLength)
+    if(str[i]!=str[i-1])
     {
-      maxLength = l;
-      maxIndex = i;
+      if(max_count<count)
+        max_count=count;
+      count=1;
     }
-    i += l;
+    else
+      count+=1;
   }
-  cout << maxLength;
-}
-
-long long long int calcLength(string s)
-{
-  long long long int i = 0;
-  while(s[i] == s[i+1])
-    i++;
-  return i+1;
-}
+  if(max_count<count)
+    cout<<count;
+  else
+    cout << max_count;
+  return 0;
+ }
