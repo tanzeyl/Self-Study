@@ -3,74 +3,57 @@
 
 typedef struct node
 {
-  int info;
-  struct node *next;
-} nodetype;
+    int info;
+    struct node *next;
+} Node;
 
-void push(nodetype **);
-void pop(nodetype **);
-void display(nodetype *);
+
+int palinCheck(Node *, int);
+void push(Node **);
 
 int main()
 {
-  nodetype *top = NULL;
-  int ch;
-  while(1)
-  {
-    printf("1. Push\n2. Pop\n3. Display\n");
-    scanf("%d",&ch);
-    switch(ch)
-    {
-      case 1: push(&top); break;
-      case 2: pop(&top); break;
-      case 3: display(top); break;
-      default: printf("Enter a valid choice.\n");
-    }
-    printf("1 to continue anything else to stop.\n");
-    scanf("%d",&ch);
-    if(ch != 1)
-      break;
-  }
+    Node *top = NULL;
+    int result, n, i;
+    for (i=0; i<n; i++)
+        push(&top);
+    result = palinCheck(top, n);
+    if (result)
+        printf("Palindrome.\n");
+    else
+        printf("The linked list is not a palindrome.\n");
+    return 0;
 }
 
-void push(nodetype **top)
+int palinCheck (Node *p, int count)
+{
+    int i = 0, j;
+    Node *front, *rear;
+    while (i != count / 2)
+    {
+        front = rear = p;
+        for (j = 0; j < i; j++)
+            front = front->next;
+        for (j = 0; j < count - (i + 1); j++)
+            rear = rear->next;
+        if (front->info != rear->info)
+            return 0;
+        else
+            i++;
+    }
+    return 1;
+}
+
+void push(Node **top)
 {
   int x;
-  nodetype *p = NULL;
-  p = (nodetype *)malloc(sizeof(nodetype));
+  Node *p = NULL;
+  p = (Node *)malloc(sizeof(Node));
   if(p != NULL)
   {
-    printf("Enter the value.\n");
     scanf("%d",&x);
     p->info = x;
     p->next = *top;
     *top = p;
-  }
-}
-
-void pop(nodetype **top)
-{
-  if (top == NULL)
-    printf("Nothing to pop.\n");
-  else
-  {
-    nodetype *temp = *top;
-    printf("Value popped is: %d.\n",(*top)->info);
-    *top = (*top)->next;
-    free(temp);
-  }
-}
-
-void display(nodetype *top)
-{
-  if (top == NULL)
-    printf("Nothing to display.\n");
-  else
-  {
-    while(top != NULL)
-    {
-      printf("%d ",top->info);
-      top = top->next;
-    }
   }
 }
