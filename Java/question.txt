@@ -1,0 +1,5 @@
+WAP to find whether the given key element is present in an array or not.
+WAP to find the maximum and minimum element in an array.
+WAP to print an array in reverse order.
+Lab Manual: To find the saddle point in a given matrix.
+Lab Manual: To find the pattern "0(1+)0" in a given string. (a string is given, first change it too character array.)
