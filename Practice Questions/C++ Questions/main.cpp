@@ -1,14 +1,18 @@
 #include <iostream>
 using namespace std;
 
-void add(int, int);
-
 int main()
 {
-    add(5,4);
-}
-
-inline void add(int a, int b)
-{
-    cout << a+b;
+    int i = 2, first = 0, second = 1, third, n;
+    cin >> n;
+    cout << first << " " << second << " ";
+    third = first + second;
+    while(i < n)
+    {
+        cout << third << " ";
+        first = second;
+        second = third;
+        third = first + second;
+        i++;
+    }
 }
