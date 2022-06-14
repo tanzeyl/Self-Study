@@ -1,3 +1,4 @@
+package com.comapny;
 import java.util.Scanner;
 import java.lang.Math;
 
