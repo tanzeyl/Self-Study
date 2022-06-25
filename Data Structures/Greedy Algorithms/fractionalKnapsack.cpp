@@ -3,30 +3,27 @@
 #include <algorithm>
 using namespace std;
 
-bool compare(pair<int, int> a, pair<int, int> b) { return (a.second/a.first) > (b.second/b.first); }
+bool comp(pair <int, int> a, pair<int, int> b) { return (a.second/a.first) > (b.second/b.first); }
 
 int main()
 {
-  int n, weight, value, capacity, profit = 0, count = 0;
   vector <pair<int, int>> sack;
-  cout << "Enter the number of items in the sack." << endl;
-  cin >> n;
-  int ratio[n];
+  int n, weight, value, maxProfit = 0, capacity, i;
+  cout << "Enter the number of item." << endl; cin >> n;
   cout << "Enter the weight and value of each item." << endl;
   for (int i=0; i<n; i++)
   { cin >> weight >> value; sack.push_back(make_pair(weight, value)); }
-  sort(sack.begin(), sack.end(), compare);
-  cout << "Enter the capacity of your sack." << endl;
-  cin >> capacity;
-  for (int i=0; i<n; i++)
-  { ratio[i] = sack[i].second/sack[i].first; }
-  for (int i=0; i<n; i++)
+  sort(sack.begin(), sack.end(), comp);
+  cout << "Enter the capacity of your sack." << endl; cin >> capacity;
+  i = 0;
+  while (capacity != 0)
   {
     if (sack[i].first <= capacity)
-    { profit += sack[i].second; count++; capacity -= sack[i].first;}
+    { maxProfit += sack[i].second; capacity -= sack[i].first; }
     else
-    { profit += capacity * ratio[i]; capacity = 0;}
-    if (capacity == 0) break;
+    { maxProfit += capacity * (sack[i].second/sack[i].first); capacity = 0; }
+    i++;
+    cout << capacity << " " << maxProfit << endl;
   }
-  cout << "Maximum profit is: " << profit << endl;
+  cout << "We can have a maximum profit of " << maxProfit << "." << endl;
 }

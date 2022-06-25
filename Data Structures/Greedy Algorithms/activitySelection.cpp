@@ -5,15 +5,15 @@ using namespace std;
 
 int main()
 {
-  int n, s, e, i, count = 0, currentEnd = -1;
+  int n, start, end, currentEnd = -1, count = 0;
   vector <pair<int, int>> activity;
   cout << "Enter the number of activities." << endl;
   cin >> n;
-  cout << "Enter the start and end time for all the activities." << endl;
-  for (i=0; i<n; i++)
-  { cin >> s >> e; activity.push_back(make_pair(e, s)); }
-  sort(activity.begin(), activity.end());
-  for (i=0; i<n; i++)
+  cout << "Enter the start and end time of all the activities." << endl;
+  for (int i=0; i<n; i++)
+  { cin >> start >> end; activity.push_back(make_pair(end, start)); }
+  sort (activity.begin(), activity.end());
+  for (int i=0; i<n; i++)
   {
     if (activity[i].second > currentEnd)
     {
@@ -21,5 +21,5 @@ int main()
       currentEnd = activity[i].first;
     }
   }
-  cout << "Maximum number of activites that can be run is: " << count << endl;
+  cout << "Number of executable activities are: " << count << "." << endl;
 }
