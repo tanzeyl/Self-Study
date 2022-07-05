@@ -1,63 +1,77 @@
-import java.util.LinkedList;
+class Utility {
+  int i;
+  Boolean produced = false;
 
-public class ProducerConsumer {
-  public static void main(String[] args)
-      throws InterruptedException {
-    final PC pc = new PC();
-    Thread t1 = new Thread(new Runnable() {
-      public void run() {
-        try {
-          pc.produce();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    });
-    Thread t2 = new Thread(new Runnable() {
-      public void run() {
-        try {
-          pc.consume();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    });
-    t1.start();
-    t2.start();
-    t1.join();
-    t2.join();
+  public synchronized void set(int i) throws InterruptedException {
+    while (produced) {
+      wait();
+    }
+    this.i = i;
+    produced = true;
+    System.out.println("Producer: " + i);
+    notify();
   }
 
-  public static class PC {
-    LinkedList<Integer> list = new LinkedList<>();
-    int capacity = 2;
+  public synchronized void get() throws InterruptedException {
+    while (!produced) {
+      wait();
+    }
+    produced = false;
+    System.out.println("Consumer: " + i);
+    notify();
+  }
+}
 
-    public void produce() throws InterruptedException {
-      int value = 0;
-      while (true) {
-        synchronized (this) {
-          while (list.size() == capacity)
-            wait();
-          System.out.println("Producer produced-" + value);
-          list.add(value++);
-          notify();
-          Thread.sleep(1000);
-        }
+class Producer implements Runnable {
+  private Utility u;
+
+  Producer(Utility u) {
+    this.u = u;
+    Thread producer = new Thread(this, "Producer");
+    producer.start();
+  }
+
+  @Override
+  public void run() {
+    int i = 0;
+    while (true) {
+      try {
+        u.set(i);
+        Thread.sleep(500);
+      } catch (InterruptedException e) {
+        System.out.println(e);
+      }
+      i++;
+    }
+  }
+}
+
+class Consumer implements Runnable {
+  private Utility u;
+
+  Consumer(Utility u) {
+    this.u = u;
+    Thread consumer = new Thread(this, "Consumer");
+    consumer.start();
+  }
+
+  @Override
+  public void run() {
+    while (true) {
+      try {
+        u.get();
+        Thread.sleep(2000);
+      } catch (InterruptedException e) {
+        System.out.println(e);
       }
     }
+  }
+}
 
-    public void consume() throws InterruptedException {
-      while (true) {
-        synchronized (this) {
-          while (list.size() == 0)
-            wait();
-          int val = list.removeFirst();
-          System.out.println("Consumer consumed-"
-              + val);
-          notify();
-          Thread.sleep(1000);
-        }
-      }
-    }
+public class ProducerConsumer {
+  public static void main(String[] args) {
+    Utility u = new Utility();
+    new Producer(u);
+    new Consumer(u);
   }
 }
