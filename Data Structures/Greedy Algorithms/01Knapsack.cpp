@@ -16,10 +16,10 @@ int main()
   cout << "Maximum profit is: " << knapSack(sack, capacity) << "." << endl;
 }
 
-int knapSack(vector<pair<int, int>> sack, int capacity)
+int knapSack(vector <pair<int, int>> sack, int capacity)
 {
-  int i, j;
   int solution[sack.size()+1][capacity+1];
+  int i, j;
   for (i=0; i<sack.size()+1; i++)
   {
     for (j=0; j<capacity+1; j++)

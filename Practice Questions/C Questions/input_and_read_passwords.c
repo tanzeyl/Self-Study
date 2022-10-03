@@ -6,8 +6,7 @@ int main ()
   FILE *fptr;
   char buffer[80];
   char s[80];
-  char fname[20] = "file.txt";
-  fptr = fopen(fname, "w");
+  fptr = fopen("file.txt", "w");
 
   if (fptr == NULL)
   {
@@ -19,10 +18,12 @@ int main ()
   {
     fgets(buffer, 80, stdin);
     fputs(buffer, fptr);
+    // This while block is used to write to a file.
+    // You may memorize this, if time is less.
   }
 
   fclose(fptr);
-  fptr = fopen(fname, "r");
+  fptr = fopen("file.txt", "r");
   if (fptr == NULL)
   {
     printf("Error in opening file.\n");
