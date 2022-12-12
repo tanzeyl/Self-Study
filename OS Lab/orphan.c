@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/wait.h>
 
 int main()
 {
@@ -8,14 +7,14 @@ int main()
   pid = fork();
   if (pid == 0)
   {
+    sleep(1);
     printf("I am child and my process ID is %d.\n",getpid());
-    printf("My parent's process ID is %d.\n",getppid());
+    printf("My parent's process ID is %d.\n", getppid());
   }
   else
   {
-    wait(NULL);
-    sleep(3);
-    printf("I am the parent and my process ID is %d.\n",getpid());
+    printf("I am parent and my process ID is %d.\n",getpid());
     printf("My child's process ID is %d.\n",pid);
   }
+  printf("Process ID of the terminating process is %d.\n",getpid());
 }

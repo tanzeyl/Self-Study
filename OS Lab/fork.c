@@ -4,5 +4,5 @@
 int main()
 {
   fork();
-  printf("Hello\n");
+  printf("Linux\n");
 }

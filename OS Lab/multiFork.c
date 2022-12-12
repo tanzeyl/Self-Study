@@ -6,5 +6,7 @@ int main()
   fork();
   printf("My\n");
   fork();
-  printf("name\n");
+  printf("Name is\n");
+  fork();
+  printf("Tanzeel\n");
 }
