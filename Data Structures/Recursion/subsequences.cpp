@@ -11,7 +11,7 @@ void generateSubsequences(char in[], char out[], int i, int j)
 
 int main()
 {
-  char input[] = "123456789";
+  char input[] = "123";
   char output[10];
   generateSubsequences(input, output, 0, 0);
 }
