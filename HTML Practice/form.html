@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <title>Application Form</title>
+    <style>
+      div {
+        margin: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <fieldset>
+        <legend>Personal Details</legend>
+        <div>
+          <label for="title">Title:</label>
+          <select name="title" id="title">
+            <option value="mr">Mr.</option>
+            <option value="ms">Ms.</option>
+            <option value="mrs">Mrs.</option>
+          </select>
+        </div>
+        <div>
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" />
+        </div>
+        <div>
+          <label for="father">Father's Name</label>
+          <input type="text" name="father" id="father" />
+        </div>
+        <div>
+          <label for="gender">Gender:</label>
+          <input type="radio" name="gender" id="gender" value="male" />
+          <label for="gender">Male</label>
+          <input type="radio" name="gender" id="gender" value="female" />
+          <label for="female">Female</label>
+          <input type="radio" id="gender" name="gender" value="other" />
+          <label for="other">Other</label>
+        </div>
+        <div>
+          <label for="status">Marital Status</label>
+          <select name="status" id="status">
+            <option value="single">Single</option>
+            <option value="divorced">Divorced</option>
+            <option value="married">Married</option>
+            <option value="widowed">Widowed</option>
+          </select>
+        </div>
+        <div>
+          <label for="religion">Religion</label>
+          <select name="religion" id="religion">
+            <option value="islam">Islam</option>
+            <option value="hinduism">Hinduism</option>
+            <option value="christianity">Christianity</option>
+            <option value="sikhism">Sikhism</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="dob">Date of Birth:</label>
+          <input type="date" name="dob" id="dob" />
+        </div>
+        <div>
+          <label for="category">Category</label>
+          <select name="category" id="category">
+            <option value="general">General</option>
+            <option value="obc">OBC</option>
+            <option value="sc">SC</option>
+            <option value="st">ST</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Contact Details</legend>
+        <div>
+          <label for="phonr">Phone:</label>
+          <input type="text" name="phone" id="phone" />
+        </div>
+        <div>
+          <label for="address">Address:</label>
+          <textarea name="address" id="address" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div>
+          <label for="city">City:</label>
+          <input type="text" name="city" id="city" />
+        </div>
+        <div>
+          <label for="pincode">Pincode:</label>
+          <input type="text" name="pincode" id="pincode" />
+        </div>
+        <div>
+          <label for="state">State</label>
+          <select name="state" id="state">
+            <option value="up">Uttar Pradesh</option>
+            <option value="utt">Uttarakhand</option>
+            <option value="wb">West Bengal</option>
+            <option value="raj">Rajasthan</option>
+            <option value="tn">Tamil Nadu</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Qualification Details</legend>
+        <table>
+          <tr>
+            <th>Serial Number</th>
+            <th>Qualification</th>
+            <th>Board/University</th>
+            <th>Passing Year</th>
+            <th>Percentage</th>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>
+              <select name="qual" id="qual">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="UG">UG</option>
+                <option value="PG">PG</option>
+              </select>
+            </td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>
+              <select name="qual" id="qual">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="UG">UG</option>
+                <option value="PG">PG</option>
+              </select>
+            </td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td>
+              <select name="qual" id="qual">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="UG">UG</option>
+                <option value="PG">PG</option>
+              </select>
+            </td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>4.</td>
+            <td>
+              <select name="qual" id="qual">
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="UG">UG</option>
+                <option value="PG">PG</option>
+              </select>
+            </td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+            <td><input type="text" /></td>
+          </tr>
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>Other Details</legend>
+        <div>
+          <label for="languages">Languages Known:</label>
+          <select name="languages" id="languages">
+            <option value="hindi">Hindi</option>
+            <option value="english">English</option>
+          </select>
+        </div>
+        <div>
+          <label for="adhaar">Adhaar Card Number:</label>
+          <input
+            type="text"
+            name="adhaar"
+            id="adhaar"
+            min="12"
+            maxlength="12"
+          />
+        </div>
+        <div>
+          <label for="pan">PAN Card Number:</label>
+          <input type="text" name="pan" id="pan" min="12" maxlength="12" />
+        </div>
+      </fieldset>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

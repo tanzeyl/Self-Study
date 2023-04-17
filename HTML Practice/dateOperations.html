@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Date Operations</title>
+  </head>
+  <body>
+    <p id="time"></p>
+    <br />
+    <p id="date1"></p>
+    <br />
+    <p id="date2"></p>
+    <br />
+    <p id="date3"></p>
+    <br />
+    <button onclick="getDates()">
+      Click here to get today's date in different formats.</button
+    ><br />
+    <input type="date" id="d1" />
+    <input type="date" id="d2" />
+    <button onclick="calculateDiff()">Calculate Difference</button>
+    <input type="text" id="diff" /><br />
+    <button onclick="getPassedDays()">
+      Get number of days passed in this year
+    </button>
+    <p id="passed"></p>
+    <br />
+    <input type="text" id="year" />
+    <button onclick="checkSunday()">Click here!</button>
+    <p id="sunday"></p>
+    <br />
+    <button onclick="daysTillChristmas()">Click here!</button>
+    <p id="christmas"></p>
+    <script>
+      let today = new Date();
+      let hour = today.getHours();
+      let ampm = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12;
+      hour = hour ? hour : 12;
+      let mins = today.getMinutes();
+      mins = mins < 10 ? "0" + mins : mins;
+      let secs = today.getSeconds();
+      secs = secs < 10 ? "0" + secs : secs;
+      let time = hour + ":" + mins + ":" + secs + ":" + ampm;
+      document.getElementById("time").innerHTML = time;
+      function getDates() {
+        let today = new Date();
+        let month = parseInt(today.getMonth()) + 1;
+        let day = today.getDate();
+        let year = today.getFullYear();
+        document.getElementById("date1").innerHTML =
+          month + "-" + day + "-" + year;
+        document.getElementById("date2").innerHTML =
+          month + "/" + day + "/" + year;
+        document.getElementById("date3").innerHTML =
+          day + "/" + month + "/" + year;
+      }
+      function calculateDiff() {
+        let d1 = document.getElementById("d1").value;
+        let d2 = document.getElementById("d2").value;
+        let date1 = new Date(d1);
+        let date2 = new Date(d2);
+        let diff = Math.abs(date2 - date1);
+        let diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("diff").value = diffDays;
+      }
+      function getPassedDays() {
+        let today = new Date();
+        let start = new Date(today.getFullYear(), 0, 0);
+        let diff = today - start;
+        diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("passed").innerHTML = diff;
+      }
+      function checkSunday() {
+        let year = document.getElementById("year").value;
+        let date = new Date(year, 0, 1);
+        let day = date.getDay();
+        if (day === 0) {
+          document.getElementById("sunday").innerHTML = "Yes";
+        } else {
+          document.getElementById("sunday").innerHTML = "NO";
+        }
+      }
+      function daysTillChristmas() {
+        let christmas = new Date();
+        christmas.setMonth(11);
+        christmas.setDate(25);
+        let today = new Date();
+        let diff = christmas.getTime() - today.getTime();
+        diff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("christmas").innerHTML = diff;
+      }
+    </script>
+  </body>
+</html>

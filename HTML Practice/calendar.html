@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <title>Calendar</title>
+  </head>
+  <body>
+    <select id="month">
+      <option value="0">Jan</option>
+      <option value="1">Feb</option>
+      <option value="2">Mar</option>
+      <option value="3">Apr</option>
+      <option value="4">May</option>
+      <option value="5">Jun</option>
+      <option value="6">Jul</option>
+      <option value="7">Aug</option>
+      <option value="8">Sep</option>
+      <option value="9">Oct</option>
+      <option value="10">Nov</option>
+      <option value="11">Dec</option>
+    </select>
+    <select id="year">
+      <option value="2020">2020</option>
+      <option value="2021">2021</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+    </select>
+    <button onclick="displayCalendar()">Display!</button>
+    <div id="calendar"></div>
+    <br />
+    <button onclick="displayDateAndTime()">Date and Time</button>
+    <div id="dateTime"></div>
+    <button onclick="getCurrentDate()">Get Date</button>
+    <div id="currentDate"></div>
+    <input type="date" id="date1" />
+    <input type="date" id="date2" />
+    <button onclick="getDifference()">Get Difference</button>
+    <div id="diff"></div>
+    <script>
+      function displayCalendar() {
+        const month = parseInt(document.getElementById("month").value);
+        const year = parseInt(document.getElementById("year").value);
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        let html =
+          "<table><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thur</th><th>Fri</th><th>Sat</th></tr><tr>";
+        let day = 1;
+        for (let i = 0; i < 7; i++) {
+          if (i < firstDay) {
+            html += "<td></td>";
+          } else {
+            html += "<td>" + day + "</td>";
+            day++;
+          }
+        }
+        html += "</tr>";
+        for (let i = 0; i < Math.ceil((daysInMonth - (day - 1)) / 7) + 7; i++) {
+          html += "<tr>";
+          for (let j = 0; j < 7; j++) {
+            if (day <= daysInMonth) {
+              html += "<td>" + day + "</td>";
+              day++;
+            } else {
+              html += "<td></td>";
+            }
+          }
+          html += "</tr>";
+        }
+        html += "</table>";
+        document.getElementById("calendar").innerHTML = html;
+      }
+
+      function displayDateAndTime() {
+        const weekDays = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const today = new Date();
+        day = weekDays[today.getDay()];
+        let hour = today.getHours();
+        let ampm = hour >= 12 ? "PM" : "AM";
+        hours = hour % 12;
+        hour = hour ? hour : 12;
+        let mins = today.getMinutes();
+        mins = mins < 10 ? "0" + mins : mins;
+        let secs = today.getSeconds();
+        secs = secs < 10 ? "0" + secs : secs;
+        time = hour + ":" + mins + ":" + secs + " " + ampm;
+        result = "Today is " + day + " and the time is: " + time + ".";
+        document.getElementById("dateTime").innerHTML = result;
+      }
+
+      function getCurrentDate() {
+        let today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const date = today.getDate();
+        const result = date + "/" + month + "/" + year;
+        document.getElementById("currentDate").innerHTML = result;
+      }
+
+      function getDifference() {
+        const d1 = document.getElementById("date1").value;
+        const d2 = document.getElementById("date2").value;
+        let date1 = new Date(d1);
+        let date2 = new Date(d2);
+        const diff = Math.abs(date2 - date1);
+        let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("diff").innerHTML = days;
+      }
+    </script>
+  </body>
+</html>

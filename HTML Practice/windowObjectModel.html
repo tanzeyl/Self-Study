@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>WOM</title>
+  </head>
+  <body>
+    <p class="abc">My name is:...</p>
+    <button onclick="fun()">Click me</button>
+    <button onclick="setTimeout(fun, 3000)">Click for time out version</button>
+    <script>
+      alert("Answer this question.");
+      let a = prompt("What is your name?");
+      if (confirm("Are you sure?")) {
+        document.getElementsByClassName("abc").innerHTML = "Your name is " + a;
+      } else {
+        document.getElementsByClassName("abc").innerHTML =
+          "We are not sure about your name!";
+      }
+      function fun() {
+        alert("Thankyou for your time.");
+        open("https://www.google.com");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Dynamic Table</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 3px;
+      }
+    </style>
+  </head>
+  <table id="dynamicTable">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Salary</th>
+    </tr>
+  </table>
+  <button onclick="createRow()">Add row</button>
+  <button onclick="createcColumn()">Add column</button>
+  <script>
+    let html = "<table><tr><th>Name</th><th>Age</th><th>Salary</th></tr><tr>";
+    function createRow() {
+      let name = prompt("Enter your name.");
+      html += "<td>" + name + "</td>";
+      let age = prompt("Enter your age.");
+      html += "<td>" + age + "</td>";
+      let salary = prompt("Enter your salary.");
+      html += "<td>" + salary + "</td>";
+      html += "</tr></table>";
+      document.getElementById("dynamicTable").innerHTML = html;
+    }
+
+    function createcColumn() {
+      let col = prompt("Enter new column");
+    }
+  </script>
+</html>

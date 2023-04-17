@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Random</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <label for="cel">Enter temperature in Celcius.</label>
+    <input type="text" class="cel" id="cel" />
+    <label for="feh">Temperature in Fehrenheit after conversion:</label>
+    <input type="text" class="feh" id="feh" />
+    <button onclick="convert()">Convert</button><br />
+    <label for="a">Enter first number.</label>
+    <input type="text" class="a" id="a" />
+    <label for="b">Enter second number:</label>
+    <input type="text" class="b" id="b" />
+    <button onclick="add()">Add</button>
+    <button onclick="sub()">Subtract</button>
+    <button onclick="mul()">Multiply</button>
+    <button onclick="div()">Divide</button>
+    <input type="text" id="ans" /><br />
+    <label for="num">Check for palindrome.</label>
+    <input type="text" id="num" />
+    <button onclick="palindrome()">Check</button>
+    <p id="palin"></p>
+  </body>
+  <script>
+    function convert() {
+      let c = document.getElementById("cel").value;
+      let f = (c * 9) / 5 + 32;
+      document.getElementById("feh").value = f;
+    }
+
+    function add() {
+      let a = parseInt(document.getElementById("a").value);
+      let b = parseInt(document.getElementById("b").value);
+      document.getElementById("ans").value = a + b;
+    }
+
+    function sub() {
+      let a = parseInt(document.getElementById("a").value);
+      let b = parseInt(document.getElementById("b").value);
+      document.getElementById("ans").value = a - b;
+    }
+
+    function mul() {
+      let a = parseInt(document.getElementById("a").value);
+      let b = parseInt(document.getElementById("b").value);
+      document.getElementById("ans").value = a * b;
+    }
+
+    function div() {
+      let a = parseInt(document.getElementById("a").value);
+      let b = parseInt(document.getElementById("b").value);
+      document.getElementById("ans").value = a / b;
+    }
+
+    function palindrome() {
+      let n = parseInt(document.getElementById("num").value);
+      let rev = 0,
+        rem,
+        temp = n;
+      while (temp > 0) {
+        rem = temp % 10;
+        rev = rev * 10 + rem;
+        temp = parseInt(temp / 10);
+      }
+      if (rev == n) {
+        document.getElementById("palin").innerHTML = "Yes";
+      } else {
+        document.getElementById("palin").innerHTML = "No";
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>Stopwatch</title>
+    <style>
+      body {
+        background-color: antiquewhite;
+      }
+
+      .container {
+        margin-top: 20%;
+        border: 3px solid rgb(24, 11, 11);
+        max-width: 20%;
+        padding: 2%;
+        border-radius: 20px;
+        background-color: rgb(39, 105, 60, 0.5);
+      }
+
+      .time {
+        font-size: 40px;
+        font-family: fantasy;
+        padding-bottom: 2%;
+      }
+
+      .button {
+        font-size: 20px;
+        background-color: aliceblue;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <div class="container">
+        <div class="time">00:00:00</div>
+        <button class="button" id="start" onclick="start()">Start</button>
+        <button class="button" id="pause" onclick="pause()">Pause</button>
+        <button class="button" id="reset" onclick="reset()">Reset</button>
+      </div>
+    </center>
+    <script>
+      const timeElement = document.querySelector(".time");
+      const startButton = document.querySelector("#start");
+      const pauseButton = document.querySelector("#pause");
+      const resetButton = document.querySelector("#reset");
+
+      let timer = null,
+        hours = 0,
+        minutes = 0,
+        seconds = 0;
+
+      function updateTime() {
+        seconds++;
+        if (seconds >= 60) {
+          seconds = 0;
+          minutes++;
+        }
+        if (minutes >= 60) {
+          minutes = 0;
+          hours++;
+        }
+        const timeString = `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        timeElement.textContent = timeString;
+      }
+
+      function start() {
+        timer = setInterval(updateTime, 1000);
+        startButton.disabled = true;
+        pauseButton.disabled = false;
+      }
+
+      function pause() {
+        clearInterval(timer);
+        startButton.disabled = false;
+        pauseButton.disabled = true;
+      }
+
+      function reset() {
+        clearInterval(timer);
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        timeElement.textContent = "00:00:00";
+        startButton.disabled = false;
+        pauseButton.disabled = true;
+      }
+    </script>
+  </body>
+</html>

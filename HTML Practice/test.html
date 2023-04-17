@@ -1,32 +1,62 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript">
-        function blockSpecialChar(e){
-        var k;
-        document.all ? k = e.keyCode : k = e.which;
-        return ((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57));
-        }
-    </script>
-    </head>
-    <body>
-        <form>
-            <fieldset>
-                <legend>Enter your details</legend>
-                <table>
-                    <tr><td>Email: </td><td><input type="text" name="email" placeholder="Enter your email"></td></tr>
-                    <tr><td>Mobile Number: </td><td><input type="number" name="number" placeholder="Enter your Mobile Number"></td></tr>
-                    <tr><td>Password: </td><td><input type="password" name="password" onkeypress="return blockSpecialChar(event)" placeholder="Enter your password"></td></tr>
-                    <tr><td>Do you use Instagram? </td><td><input type="radio" name="insta" value="yes">Yes<input type="radio" name="insta" value="No">No</td>
-                </table>
-                <input type="checkbox" id="icecream1" name="icecream1" value="vanilla">
-                <label for="vehicle1"> I like Vinalla Ice-Cream</label><br>
-                <input type="checkbox" id="icecream2" name="icecream2" value="Chocolate">
-                <label for="vehicle1"> I like Chocolate Ice-Cream</label><br>
-                <input type="checkbox" id="icecream3" name="icecream3" value="strawberry">
-                <label for="vehicle1"> I like Strawberry Ice-Cream</label><br>
-                <input type="submit" name="sub_button">
-            </fieldset>
-        </form>
-    </body>
+  <head>
+    <title>Navbar</title>
+    <style>
+      .dropdown-content {
+        display: none;
+      }
+
+      .dropdown-content a {
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .navbar {
+        min-width: 100%;
+      }
+
+      .navbar, .dropdown {
+        display: inline;
+      }
+
+      a {
+        text-decoration: none;
+        font-size: 20px;
+        margin-right: 3%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: black;
+      }
+
+      a:hover {
+        color: blueviolet;
+      }
+
+      .dropdown-content {
+        margin-left: 15%;
+        background-color: rgb(227, 85, 85);
+        max-width: 5%;
+        border-radius: 5%;
+        border: 2px solid black;
+        padding: 1%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="links.html">Home</a>
+      <a href="bootstrap.html">About</a>
+
+      <div class="dropdown">
+        <a href="#">Dropdown</a>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        <div/>
+      </div>
+    </div>
+  </body>
 </html>
