@@ -1,23 +1,15 @@
 <html>
   <head>
-    <title>Test</title>
-    <style>
-      div {
-        height: 100vh;
-      }
-    </style>
+    <title>TEst</title>
   </head>
-  <body onmousemove="fun()">
-    <script>
-      function fun() {
-        let color = "#";
-        let digits = "0123456789ABCDEF";
-        for (let i = 0; i < 6; i++) {
-          let randomDigit = Math.floor(Math.random() * 16);
-          color += digits[randomDigit];
-        }
-        document.body.style.backgroundColor = color;
-      }
-    </script>
+  <body>
+    <form>
+      <label for="dd">Department</label>
+      <select id="dd">
+        <option value="cs">CS</option>
+        <option value="m">Mechanical</option>
+        <option value="bio">Bio-Tech</option>
+      </select>
+    </form>
   </body>
 </html>
