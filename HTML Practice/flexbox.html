@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Flex Box</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 97vh;
+        width: 97vw;
+        border: 2px solid green;
+      }
+
+      div {
+        height: 100px;
+        width: 100px;
+        background-color: cyan;
+      }
+
+      .test1 {
+        align-self: flex-end;
+      }
+
+      .test2 {
+        align-self: flex-start;
+      }
+    </style>
+  </head>
+  <body>
+    <div>1</div>
+    <div class="test1">2</div>
+    <div>3</div>
+    <div class="test2">4</div>
+    <div>5</div>
+  </body>
+</html>

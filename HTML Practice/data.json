@@ -1,0 +1,10 @@
+{
+  "name": "John",
+  "birth": "05-05-2000",
+  "age": "23",
+  "pets": [
+    { "animal": "dog", "name": "Fido" },
+    { "animal": "cat", "name": "Felix" },
+    { "animal": "hamster", "name": "Lightning" }
+  ]
+}

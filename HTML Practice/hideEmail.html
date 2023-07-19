@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Hiding an email address!</title>
+  </head>
+  <body>
+    <input type="text" id="email" />
+    <button onclick="hideEmail()">Get hidden email.</button><br />
+    <p id="hidden"></p>
+  </body>
+  <script>
+    function hideEmail() {
+      let email = document.getElementById("email").value;
+      let splitted = email.split("@");
+      let part1 = splitted[0];
+      let part2 = splitted[1];
+      part1 = part1.substring(0, part1.length - part1.length / 2);
+      document.getElementById("hidden").innerHTML = part1 + "...@" + part2;
+    }
+  </script>
+</html>

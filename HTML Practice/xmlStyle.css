@@ -1,0 +1,13 @@
+student {
+  font-size: 2em;
+}
+
+name,
+class {
+  color: green;
+}
+
+roll,
+year {
+  color: yellow;
+}

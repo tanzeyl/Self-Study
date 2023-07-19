@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Position Property Practice</title>
+    <style>
+      body {
+        border: 2px solid black;
+        height: 1400px;
+      }
+
+      div {
+        width: 200px;
+        height: 200px;
+      }
+
+      .navbar {
+        background-color: orange;
+        width: 100vw;
+        position: sticky;
+        top: 20px;
+      }
+
+      .first {
+        background-color: cadetblue;
+        position: relative;
+        top: 75px;
+        left: 100px;
+      }
+
+      .second {
+        background-color: greenyellow;
+        position: absolute;
+        top: 100px;
+        left: 50px;
+      }
+
+      .third {
+        background-color: mediumseagreen;
+        position: absolute;
+        top: 100px;
+        left: 50px;
+      }
+
+      .footer {
+        background-color: yellow;
+        position: fixed;
+        top: 90vh;
+        left: 90vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">NAVBAR</div>
+    <div class="first">1</div>
+    <div class="second">2</div>
+    <div class="third">3</div>
+    <div class="footer">FOOTER</div>
+  </body>
+</html>
