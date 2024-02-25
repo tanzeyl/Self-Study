@@ -3,16 +3,31 @@ import PropTypes from "prop-types";
 
 export default function TextForm(props) {
   const handleUppercase = () => {
-    setText(text.toUpperCase());
+    if (text.length === 0)
+      props.showAlert("Cannot convert an empty string.", "danger");
+    else {
+      setText(text.toUpperCase());
+      props.showAlert("Text converted to upper-case", "info");
+    }
   };
 
   const handleLowercase = () => {
-    setText(text.toLowerCase());
+    if (text.length === 0)
+      props.showAlert("Cannot convert an empty string.", "danger");
+    else {
+      setText(text.toLowerCase());
+      props.showAlert("Text converted to lower-case", "info");
+    }
   };
 
   const clearText = () => {
-    setText("");
-    setwordCount(0);
+    if (text.length === 0)
+      props.showAlert("Text area is already empty.", "danger");
+    else {
+      setText("");
+      setwordCount(0);
+      props.showAlert("Text area is cleared", "info");
+    }
   };
 
   const handleOnChange = (event) => {
@@ -43,7 +58,7 @@ export default function TextForm(props) {
         </div>
         <button
           className={`btn btn-${
-            props.mode === "light" ? "succcess" : "secondary"
+            props.mode === "light" ? "success" : "secondary"
           } mx-1`}
           onClick={handleUppercase}
         >
@@ -51,7 +66,7 @@ export default function TextForm(props) {
         </button>
         <button
           className={`btn btn-${
-            props.mode === "light" ? "succcess" : "secondary"
+            props.mode === "light" ? "success" : "secondary"
           } mx-1`}
           onClick={handleLowercase}
         >
@@ -59,7 +74,7 @@ export default function TextForm(props) {
         </button>
         <button
           className={`btn btn-${
-            props.mode === "light" ? "succcess" : "secondary"
+            props.mode === "light" ? "success" : "secondary"
           } mx-1`}
           onClick={clearText}
         >
