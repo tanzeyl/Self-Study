@@ -1,18 +1,18 @@
 %{
-#include<stdio.h>
+  #include<stdio.h>
 %}
+
 %%
-[\n\t ' '] {};
-. { fprintf(yyout,"%s",yytext); }
+[\t" "]+ { fprintf(yyout, " "); }
+.|\n { fprintf(yyout, "%s", yytext); }
 %%
+
+int yywrap() {}
+
 int main()
 {
   extern FILE *yyin, *yyout;
-  yyin=fopen("myfile.txt","r");
+  yyin=fopen("input.txt","r");
   yyout = fopen("output.txt", "w");
   yylex();
-}
-int yywrap()
-{
-return 1;
 }

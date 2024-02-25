@@ -1,20 +1,18 @@
 %{
   #include <stdio.h>
-  int lc = 0, sc = 0, ch = 0, tc = 0, wc=0;
 %}
 
 %%
-[\n] { lc++; ch += yyleng; }
-[ \t] { sc++; ch += yyleng; }
-[^\t] { tc++; ch += yyleng; }
-[^\t\n ]+ { wc++; ch += yyleng; }
+int|float|auto { fprintf(yyout, "%s is a keyword.\n", yytext); }
+.|\n {}
 %%
 
 int yywrap() {}
 
 int main()
 {
-  printf("Enter the sentence.\n");
+  extern FILE *yyin, *yyout;
+  yyin = fopen("input.txt", "r");
+  yyout = fopen("output.txt", "w");
   yylex();
-  printf("Lines: %d.\nSpaces: %d.\nTabs: %d.\nWords: %d\nCharcaters: %d.\n",lc,sc,tc,wc, ch);
 }

@@ -1,16 +1,16 @@
 %{
-#include <stdio.h>
+  #include <stdio.h>
 %}
 
 %%
-hello { printf("Correct.\n"); }
+hello|Hello|HELLO { printf("Correct.\n"); }
 .* { printf("Incorrect.\n"); }
 %%
 
-int yywrap() {  }
+int yywrap() {}
 
 int main()
 {
-  printf("Enter a word.");
+  printf("Enter a word, please.\n");
   yylex();
 }
